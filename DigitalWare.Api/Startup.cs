@@ -2,6 +2,7 @@ using System;
 using DigitalWare.Core.Interfaces;
 using DigitalWare.Infrastructure.Data;
 using DigitalWare.Infrastructure.Repositories;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,11 @@ namespace DigitalWare.Api
             services.AddControllers();
             services.AddTransient<IClientRepository, ClientRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DigitalWare")));
+                options.UseSqlServer(Configuration.GetConnectionString("DigitalWare"))
+            );
+            services.AddMvc().AddFluentValidation(configuration =>
+                configuration.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

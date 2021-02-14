@@ -9,7 +9,7 @@ namespace DigitalWare.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : Controller
+    public class ClientController : ControllerBase
     {
         private readonly IClientRepository _clientRepository;
         private readonly IMapper _mapper;
