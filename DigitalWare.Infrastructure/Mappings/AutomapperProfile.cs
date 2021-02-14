@@ -8,8 +8,8 @@ namespace DigitalWare.Infrastructure.Mappings
     {
         public AutomapperProfile()
         {
-            CreateMap<Client, ClientDto>();
-            CreateMap<ClientDto, Client>();
+            CreateMap<Customer, CustomerDto>();
+            CreateMap<CustomerDto, Customer>();
         }
     }
 }

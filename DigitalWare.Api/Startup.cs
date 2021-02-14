@@ -26,7 +26,7 @@ namespace DigitalWare.Api
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
-            services.AddTransient<IClientRepository, ClientRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DigitalWare"))
             );

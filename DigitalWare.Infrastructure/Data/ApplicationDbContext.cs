@@ -10,11 +10,11 @@ namespace DigitalWare.Infrastructure.Data
         {
         }
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ClientConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
         }
     }
 }

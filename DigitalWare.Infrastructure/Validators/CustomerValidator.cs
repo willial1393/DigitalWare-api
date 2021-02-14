@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace DigitalWare.Infrastructure.Validators
 {
-    public class ClientValidator : AbstractValidator<ClientDto>
+    public class CustomerValidator : AbstractValidator<CustomerDto>
     {
-        public ClientValidator()
+        public CustomerValidator()
         {
             RuleFor(dto => dto.Birthday)
                 .NotNull();

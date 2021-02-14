@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DigitalWare.Infrastructure.Data.Configurations
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<Client>
+    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<Client> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.HasKey(client => client.Id);
+            builder.HasKey(customer => customer.Id);
         }
     }
 }
