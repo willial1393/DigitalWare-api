@@ -7,10 +7,10 @@ namespace DigitalWare.Core.DTOs
         public int? ProductId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public int? Quantity { get; set; }
-        public int? TotalQuantity { get; set; }
-        public int? UnitPrice { get; set; }
-        public int? Total { get; set; }
+        public Int16? Quantity { get; set; }
+        public Int16? TotalQuantity { get; set; }
+        public decimal? UnitPrice { get; set; }
+        public decimal? Total { get; set; }
         public DateTime? Created { get; set; }
     }
 }

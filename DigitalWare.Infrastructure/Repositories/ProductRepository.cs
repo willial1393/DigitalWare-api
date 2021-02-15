@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DigitalWare.Core.DTOs.Paginate;
+using DigitalWare.Core.DTOs.Product;
 using DigitalWare.Core.Entities;
 using DigitalWare.Core.Interfaces;
 using DigitalWare.Infrastructure.Data;
@@ -48,6 +50,25 @@ namespace DigitalWare.Infrastructure.Repositories
             _context.Add(product);
             _context.SaveChanges();
             return product;
+        }
+
+        public bool AddUnits(ProductAddUnitsDto productAddUnitsDto)
+        {
+            var last = _context.StockHistories
+                .OrderByDescending(history => history.Created)
+                .FirstOrDefault(history => history.ProductId == productAddUnitsDto.ProductId);
+            _context.StockHistories.Add(new StockHistory
+            {
+                Created = DateTime.Now,
+                Quantity = productAddUnitsDto.Units,
+                Total = (last?.Total ?? 0) + productAddUnitsDto.Units,
+                Type = "IN",
+                ProductId = productAddUnitsDto.ProductId,
+                TotalQuantity = Convert.ToInt16(productAddUnitsDto.Units * productAddUnitsDto.UnitPrice),
+                UnitPrice = productAddUnitsDto.UnitPrice
+            });
+            _context.SaveChanges();
+            return true;
         }
 
         public Product Update(Product product)

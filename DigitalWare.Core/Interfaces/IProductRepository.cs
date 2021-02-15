@@ -1,4 +1,5 @@
 ﻿using DigitalWare.Core.DTOs.Paginate;
+using DigitalWare.Core.DTOs.Product;
 using DigitalWare.Core.Entities;
 
 namespace DigitalWare.Core.Interfaces
@@ -9,6 +10,7 @@ namespace DigitalWare.Core.Interfaces
         public Product GetById(int id);
         public Product GetByName(string name);
         public Product Create(Product product);
+        public bool AddUnits(ProductAddUnitsDto productAddUnitsDto);
         public Product Update(Product product);
     }
 }

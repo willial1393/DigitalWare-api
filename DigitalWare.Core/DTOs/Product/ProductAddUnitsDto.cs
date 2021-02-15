@@ -1,9 +1,11 @@
-﻿namespace DigitalWare.Core.DTOs.Product
+﻿using System;
+
+namespace DigitalWare.Core.DTOs.Product
 {
     public class ProductAddUnitsDto
     {
-        public string ProductId { get; set; }
-        public string Units { get; set; }
-        public string UnitPrice { get; set; }
+        public int ProductId { get; set; }
+        public Int16 Units { get; set; }
+        public Int16 UnitPrice { get; set; }
     }
 }

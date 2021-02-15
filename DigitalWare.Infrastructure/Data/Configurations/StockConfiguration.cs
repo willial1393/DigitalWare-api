@@ -10,6 +10,8 @@ namespace DigitalWare.Infrastructure.Data.Configurations
         {
             builder.HasKey(stock => stock.ProductId);
             builder.HasIndex(stock => stock.Name).IsUnique();
+            builder.Property(stock => stock.UnitPrice).HasColumnType("money");
+            builder.Property(stock => stock.Total).HasColumnType("money");
         }
     }
 }

@@ -50,6 +50,12 @@ namespace DigitalWare.Api.Controllers
             return Ok(_productRepository.Create(_mapper.Map<Product>(productInsertDto)));
         }
 
+        [HttpPost("units")]
+        public IActionResult AddUnits([FromBody] ProductAddUnitsDto productAddUnitsDto)
+        {
+            return Ok(_productRepository.AddUnits(productAddUnitsDto));
+        }
+
         [HttpPut]
         public IActionResult Update([FromBody] ProductDto productDto)
         {
