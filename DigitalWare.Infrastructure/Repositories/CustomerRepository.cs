@@ -15,12 +15,12 @@ namespace DigitalWare.Infrastructure.Repositories
             _context = context;
         }
 
-        public IEnumerable<Customer> GetClients()
+        public IEnumerable<Customer> GetAll()
         {
             return _context.Customers.ToList();
         }
 
-        public Customer GetClientById(int id)
+        public Customer GetById(int id)
         {
             return _context.Customers.Find(id);
         }

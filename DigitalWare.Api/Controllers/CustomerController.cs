@@ -23,7 +23,7 @@ namespace DigitalWare.Api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var clients = _customerRepository.GetClients();
+            var clients = _customerRepository.GetAll();
             var clientDto = _mapper.Map<IEnumerable<CustomerDto>>(clients);
             return Ok(clientDto);
         }
@@ -31,7 +31,7 @@ namespace DigitalWare.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(_customerRepository.GetClientById(id));
+            return Ok(_customerRepository.GetById(id));
         }
 
         [HttpPost]
