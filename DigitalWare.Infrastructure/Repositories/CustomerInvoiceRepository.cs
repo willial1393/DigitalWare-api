@@ -47,9 +47,31 @@ namespace DigitalWare.Infrastructure.Repositories
 
         public CustomerInvoice Create(CustomerInvoice customerInvoice)
         {
+            using var dbContextTransaction = _context.Database.BeginTransaction();
+
+            foreach (var concept in customerInvoice.Concepts)
+            {
+                var stock = _context.StockHistories
+                    .OrderByDescending(history => history.Created)
+                    .FirstOrDefault(history => history.ProductId == concept.ProductId);
+                _context.Add(new StockHistory()
+                {
+                    Created = DateTime.Now,
+                    Quantity = Convert.ToInt16(-concept.Quantity),
+                    Type = "OUT",
+                    ProductId = concept.ProductId,
+                    TotalQuantity = Convert.ToInt16((stock?.TotalQuantity ?? 0) - concept.Quantity),
+                    UnitPrice = concept.UnitPrice,
+                    Total = concept.Total
+                });
+            }
+
             customerInvoice.Created = DateTime.Now;
             _context.Add(customerInvoice);
+
             _context.SaveChanges();
+            dbContextTransaction.Commit();
+
             return customerInvoice;
         }
 
