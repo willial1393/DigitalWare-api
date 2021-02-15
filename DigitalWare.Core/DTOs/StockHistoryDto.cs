@@ -1,4 +1,5 @@
 ﻿using System;
+using DigitalWare.Core.DTOs.Product;
 
 namespace DigitalWare.Core.DTOs
 {
@@ -12,5 +13,6 @@ namespace DigitalWare.Core.DTOs
         public decimal UnitPrice { get; set; }
         public decimal Total { get; set; }
         public DateTime Created { get; set; }
+        public ProductDto Product { get; set; }
     }
 }

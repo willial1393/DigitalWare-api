@@ -31,6 +31,17 @@ namespace DigitalWare.Api.Controllers
             });
         }
 
+        [HttpGet("history")]
+        public IActionResult GetAllHistory([FromQuery] PaginateQueryDto paginateQuery)
+        {
+            var res = _stockRepository.GetAllHistory(paginateQuery);
+            return Ok(new PaginateDto<StockHistoryDto>
+            {
+                Data = res.Data.Select(stock => _mapper.Map<StockHistoryDto>(stock)),
+                TotalCount = res.TotalCount
+            });
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {

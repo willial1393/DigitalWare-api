@@ -6,6 +6,7 @@ namespace DigitalWare.Core.Interfaces
     public interface IStockRepository
     {
         public PaginateDto<Stock> GetAll(PaginateQueryDto paginateDto);
+        public PaginateDto<StockHistory> GetAllHistory(PaginateQueryDto paginateDto);
         public Stock GetById(int id);
         public Stock GetByProductId(int id);
     }

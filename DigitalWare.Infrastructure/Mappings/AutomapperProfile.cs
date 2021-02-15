@@ -23,6 +23,9 @@ namespace DigitalWare.Infrastructure.Mappings
             CreateMap<StockDto, Stock>();
             CreateMap<Stock, StockDto>();
 
+            CreateMap<StockHistory, StockHistoryDto>();
+            CreateMap<StockHistoryDto, StockHistory>();
+
             CreateMap<CustomerInvoice, CustomerInvoiceDto>();
             CreateMap<CustomerInvoiceDto, CustomerInvoice>();
             CreateMap<CustomerInvoiceInsertDto, CustomerInvoice>();

@@ -12,5 +12,6 @@ namespace DigitalWare.Core.Entities
         public decimal UnitPrice { get; set; }
         public decimal Total { get; set; }
         public DateTime Created { get; set; }
+        public Product Product { get; set; }
     }
 }
