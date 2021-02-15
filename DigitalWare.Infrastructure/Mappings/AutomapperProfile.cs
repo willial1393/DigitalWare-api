@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DigitalWare.Core.DTOs;
 using DigitalWare.Core.DTOs.Customer;
+using DigitalWare.Core.DTOs.CustomerInvoice;
+using DigitalWare.Core.DTOs.CustomerInvoiceConcept;
 using DigitalWare.Core.DTOs.Product;
 using DigitalWare.Core.Entities;
 
@@ -20,6 +22,14 @@ namespace DigitalWare.Infrastructure.Mappings
 
             CreateMap<StockDto, Stock>();
             CreateMap<Stock, StockDto>();
+
+            CreateMap<CustomerInvoice, CustomerInvoiceDto>();
+            CreateMap<CustomerInvoiceDto, CustomerInvoice>();
+            CreateMap<CustomerInvoiceInsertDto, CustomerInvoice>();
+
+            CreateMap<CustomerInvoiceConcept, CustomerInvoiceConceptDto>();
+            CreateMap<CustomerInvoiceConceptDto, CustomerInvoiceConcept>();
+            CreateMap<CustomerInvoiceInsertConceptDto, CustomerInvoiceConcept>();
         }
     }
 }

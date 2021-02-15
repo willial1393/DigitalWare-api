@@ -38,6 +38,7 @@ namespace DigitalWare.Api
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IStockRepository, StockRepository>();
+            services.AddTransient<ICustomerInvoiceRepository, CustomerInvoiceRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DigitalWare"))

@@ -14,6 +14,8 @@ namespace DigitalWare.Infrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stock { get; set; }
         public DbSet<StockHistory> StockHistories { get; set; }
+        public DbSet<CustomerInvoice> CustomerInvoices { get; set; }
+        public DbSet<CustomerInvoiceConcept> CustomerInvoiceConcepts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +23,8 @@ namespace DigitalWare.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new StockConfiguration());
             modelBuilder.ApplyConfiguration(new StockHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerInvoiceConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerInvoiceConceptConfiguration());
         }
     }
 }

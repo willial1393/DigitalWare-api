@@ -44,6 +44,14 @@ namespace DigitalWare.Api.Controllers
             return Ok(_mapper.Map<Product>(_productRepository.GetByName(name)));
         }
 
+        [HttpGet("nameContain/{name}")]
+        public IActionResult GetByNameContain(string name)
+        {
+            return Ok(_productRepository.GetByNameContain(name).Select(product =>
+                _mapper.Map<ProductDto>(product))
+            );
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] ProductInsertDto productInsertDto)
         {

@@ -36,5 +36,11 @@ namespace DigitalWare.Api.Controllers
         {
             return Ok(_mapper.Map<StockDto>(_stockRepository.GetById(id)));
         }
+
+        [HttpGet("product/{id}")]
+        public IActionResult GetByProductId(int id)
+        {
+            return Ok(_mapper.Map<StockDto>(_stockRepository.GetByProductId(id)));
+        }
     }
 }

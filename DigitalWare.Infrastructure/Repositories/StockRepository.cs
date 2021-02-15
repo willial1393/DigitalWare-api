@@ -37,5 +37,10 @@ namespace DigitalWare.Infrastructure.Repositories
         {
             return _context.Stock.Find(id);
         }
+
+        public Stock GetByProductId(int id)
+        {
+            return _context.Stock.FirstOrDefault(stock => stock.ProductId == id);
+        }
     }
 }

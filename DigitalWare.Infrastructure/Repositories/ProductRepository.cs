@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DigitalWare.Core.DTOs.Paginate;
 using DigitalWare.Core.DTOs.Product;
@@ -45,6 +46,13 @@ namespace DigitalWare.Infrastructure.Repositories
             return _context.Products.FirstOrDefault(product => product.Name.ToLower() == name.ToLower());
         }
 
+        public IEnumerable<Product> GetByNameContain(string name)
+        {
+            return _context.Products.Where(product =>
+                product.Name.ToLower().Contains(name.ToLower())
+            );
+        }
+
         public Product Create(Product product)
         {
             _context.Add(product);
@@ -61,10 +69,10 @@ namespace DigitalWare.Infrastructure.Repositories
             {
                 Created = DateTime.Now,
                 Quantity = productAddUnitsDto.Units,
-                Total = (last?.Total ?? 0) + productAddUnitsDto.Units,
+                Total = productAddUnitsDto.UnitPrice + productAddUnitsDto.Units,
                 Type = "IN",
                 ProductId = productAddUnitsDto.ProductId,
-                TotalQuantity = Convert.ToInt16(productAddUnitsDto.Units * productAddUnitsDto.UnitPrice),
+                TotalQuantity = Convert.ToInt16(productAddUnitsDto.Units + (last?.TotalQuantity ?? 0)),
                 UnitPrice = productAddUnitsDto.UnitPrice
             });
             _context.SaveChanges();
