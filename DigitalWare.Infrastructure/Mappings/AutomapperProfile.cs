@@ -11,9 +11,13 @@ namespace DigitalWare.Infrastructure.Mappings
         {
             CreateMap<Customer, CustomerDto>();
             CreateMap<CustomerDto, Customer>();
+
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
             CreateMap<ProductInsertDto, Product>();
+
+            CreateMap<StockDto, Stock>();
+            CreateMap<Stock, StockDto>();
         }
     }
 }

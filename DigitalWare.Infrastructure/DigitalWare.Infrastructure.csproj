@@ -5,10 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Filters"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\DigitalWare.Core\DigitalWare.Core.csproj"/>
     </ItemGroup>
 
