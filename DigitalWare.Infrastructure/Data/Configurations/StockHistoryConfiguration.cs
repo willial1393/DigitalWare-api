@@ -9,6 +9,8 @@ namespace DigitalWare.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<StockHistory> builder)
         {
             builder.HasKey(history => history.Id);
+            builder.Property(history => history.UnitPrice).HasColumnType("money");
+            builder.Property(history => history.Total).HasColumnType("money");
         }
     }
 }

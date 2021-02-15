@@ -9,6 +9,7 @@ namespace DigitalWare.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.HasKey(customer => customer.Id);
+            builder.HasIndex(customer => customer.DocumentNumber).IsUnique();
         }
     }
 }

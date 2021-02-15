@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using AutoMapper;
-using DigitalWare.Core.DTOs;
+using DigitalWare.Core.DTOs.Customer;
+using DigitalWare.Core.DTOs.Paginate;
 using DigitalWare.Core.Entities;
 using DigitalWare.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -21,29 +22,39 @@ namespace DigitalWare.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] PaginateQueryDto paginateQuery)
         {
-            var clients = _customerRepository.GetAll();
-            var clientDto = _mapper.Map<IEnumerable<CustomerDto>>(clients);
-            return Ok(clientDto);
+            var res = _customerRepository.GetAll(paginateQuery);
+            return Ok(new PaginateDto<CustomerDto>
+            {
+                Data = res.Data.Select(customer => _mapper.Map<CustomerDto>(customer)),
+                TotalCount = res.TotalCount
+            });
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(_customerRepository.GetById(id));
+            return Ok(_mapper.Map<CustomerDto>(_customerRepository.GetById(id)));
+        }
+
+        [HttpGet("document/{document}")]
+        public IActionResult GetById(string document)
+        {
+            return Ok(_mapper.Map<CustomerDto>(_customerRepository.GetByDocument(document)));
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Customer customer)
+        public IActionResult Create([FromBody] CustomerInsertDto customerInsertDto)
         {
-            return Ok(_customerRepository.Create(customer));
+            var customer = _customerRepository.Create(_mapper.Map<Customer>(customerInsertDto));
+            return Ok(_mapper.Map<CustomerDto>(customer));
         }
 
         [HttpPut]
         public IActionResult Update([FromBody] Customer customer)
         {
-            return Ok(_customerRepository.Update(customer));
+            return Ok(_mapper.Map<CustomerDto>(_customerRepository.Update(customer)));
         }
     }
 }
